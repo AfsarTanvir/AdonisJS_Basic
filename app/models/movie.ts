@@ -1,0 +1,35 @@
+import MovieService from '#services/movie_service'
+import { toHtml } from '@dimerapp/markdown/utils'
+
+export default class Movie {
+  declare title: string
+
+  declare slug: string
+
+  declare summary: string
+
+  declare abstract?: string
+
+  static async all() {
+    const slugs = await MovieService.getSlugs()
+    const movieList: Movie[] = []
+
+    for (const slug of slugs) {
+      const movie = await this.find(slug)
+      movieList.push(movie)
+    }
+
+    return movieList
+  }
+
+  static async find(slug: string) {
+    const md = await MovieService.read(slug)
+    const movie = new Movie()
+
+    movie.title = md.frontmatter.title
+    movie.summary = md.frontmatter.summary
+    movie.slug = slug
+    movie.abstract = toHtml(md).contents
+    return movie
+  }
+}

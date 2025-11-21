@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,27 +8,22 @@
 
   @vite(['resources/js/app.js'])
 </head>
+{{-- movie -> movies_controller.ts  --}}
 <body>
   <div class="max-w-3xl mx-auto mt-6">
     <nav>
       <a href="{{ route('home') }}">Home</a>
-      <a href="{{ route('movies.show', { slug: 'movie01' }) }}">
-        My Awesome Movie
-      </a>
-      <a href="{{ route('movies.show', { slug: 'movie02' }) }}">
-        Another Awesome Movie
-      </a>
-      <a href="{{ route('movies.show', { slug: 'movie03' }) }}">
-        Afsar
-      </a>
-      <a href="{{ route('movies.show', { slug: 'movie04' }) }}">
-        Tanvir
-      </a>
+      <a href="{{ route('movies.show', { slug: 'movie01' }) }}">01</a>
+      <a href="{{ route('movies.show', { slug: 'movie02' }) }}">02</a>
+      <a href="{{ route('movies.show', { slug: 'movie03' }) }}">03</a>
+      <a href="{{ route('movies.show', { slug: 'movie04' }) }}">04</a>
     </nav>
 
-    <h1>{{ md.frontmatter.title }}</h1>
+    <h1>{{ movie.title }}</h1>
+    <p>{{ movie.summary }}</p>
 
-    {{{ movie }}}
+    {{{ movie.abstract }}}
   </div>
 </body>
+
 </html>
