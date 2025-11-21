@@ -3,7 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { toHtml } from '@dimerapp/markdown/utils'
 
 export default class MoviesController {
-  async index({ view }: HttpContext) {
+  async movieControllerIndex({ view }: HttpContext) {
     const slugs = await MovieService.getSlugs()
     const movies: Record<string, any>[] = []
 
@@ -20,7 +20,7 @@ export default class MoviesController {
     return view.render('pages/home', { movies })
   }
 
-  async show({ view, params }: HttpContext) {
+  async movieControllerShow({ view, params }: HttpContext) {
     const md = await MovieService.read(params.slug)
     const movie = toHtml(md).contents
 

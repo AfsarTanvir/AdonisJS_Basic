@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> AdonisJS - A fully featured web framework for Node.js </title>
+
+    @vite(['resources/js/app.js'])
+</head>
+
+<body>
+    <div class="max-w-3xl mx-auto mt-6">
+        <nav>
+            <a href="{{ route('home') }}">Home</a>
+
+            <p>Books Title Name</p>
+            <ul>
+                @each (book in bookList)
+                <li>
+                    <a href="{{ route('books.show', { slug: book.slug }) }}">
+                        {{ book.title }}
+                    </a>
+                </li>
+                @endeach
+            </ul>
+        </nav>
+    </div>
+</body>
+
+</html>
